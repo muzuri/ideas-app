@@ -1,4 +1,4 @@
-import { User } from './user';
+import {  AuthDTO } from './user';
 
 export interface Idea {
   id: string;
@@ -6,7 +6,7 @@ export interface Idea {
   updated: Date;
   idea: string;
   description: string;
-  author: User;
+  author: AuthDTO;
   downvotes?: number;
   upvotes?: number;
   // comment: Comment;

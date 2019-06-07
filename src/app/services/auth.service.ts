@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { User } from '../models/user';
+import { AuthDTO } from '../models/user';
+import { AuthType } from '@app/models/auth';
 
 
 
@@ -24,7 +25,8 @@ export class AuthService {
 
     }
   }
-  auth( ) {
+  private auth(authtype: AuthType, data: any ) {
+    return this.httpclient.post(`${this.apiUrl}/${authtype}`, data);
 
   }
 
@@ -32,7 +34,7 @@ export class AuthService {
 
   }
 
-  public register(data: User) {
+  public register(data: AuthDTO) {
     return this.httpclient.post(`${this.apiUrl}/register`, data);
   }
   public async whoami(username: string) {
