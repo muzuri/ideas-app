@@ -12,7 +12,7 @@ import { AuthType } from '@app/models/auth';
 export class AuthService {
   private apiUrl: string = environment.api_server;
 
-  constructor(private httpclient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   get token() {
     return localStorage.get('idea-token');
@@ -26,7 +26,7 @@ export class AuthService {
     }
   }
   private auth(authtype: AuthType, data: any ) {
-    return this.httpclient.post(`${this.apiUrl}/${authtype}`, data);
+    return this.http.post(`${this.apiUrl}/${authtype}`, data);
 
   }
 
@@ -35,10 +35,10 @@ export class AuthService {
   }
 
   public register(data: AuthDTO) {
-    return this.httpclient.post(`${this.apiUrl}/register`, data);
+    return this.http.post(`${this.apiUrl}/register`, data);
   }
   public async whoami(username: string) {
-    return await this.httpclient.get(`${this.apiUrl}/auth/whomai/${username}`);
+    return await this.http.get(`${this.apiUrl}/auth/whomai/${username}`);
 
 
   }
